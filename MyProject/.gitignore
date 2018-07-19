@@ -1,0 +1,14 @@
+platforms
+hooks
+node_modules
+lib
+debugger
+dist
+
+package-lock.json
+app/**/*.map
+app/**/*.js
+
+.DS_Store
+**/*.log
+tags
