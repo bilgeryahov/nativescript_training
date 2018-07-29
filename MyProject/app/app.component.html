@@ -1,2 +1,7 @@
-<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
-<page-router-outlet></page-router-outlet>
+<StackLayout>
+    <Label text="Tap the button" class="title"></Label>
+    
+    <Button text="TAP" (tap)="onTap()"></Button>
+
+    <Label [text]="message" class="message" textWrap="true"></Label>
+</StackLayout>
