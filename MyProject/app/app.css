@@ -10,12 +10,3 @@ of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
 @import '~nativescript-theme-core/css/core.light.css';
-
-button {
-    background-color: red;
-}
-
-.body-text {
-    font-weight: bold;
-    color: green;
-}
