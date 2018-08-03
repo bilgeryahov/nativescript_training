@@ -4,7 +4,9 @@
 <GridLayout>
     <ListView [items]="people" class="list-group">
         <ng-template let-person="item">
-            <StackLayout class="list-group-item">
+            <StackLayout class="list-group-item" 
+                (tap)="navigateDetailsPage(person.firstName + ' ' + person.lastName)"
+            >
                 <Label text="{{ person.firstName }} {{ person.lastName }}"></Label>
             </StackLayout>
         </ng-template>

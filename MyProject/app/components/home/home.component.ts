@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "ns-home",
@@ -9,9 +10,9 @@ import { Component, OnInit } from "@angular/core";
 
 export class HomeComponent implements OnInit {
 
-    public people: Array<any>;
+    private people: Array<any>;
 
-    public constructor() {
+    public constructor(private router: Router) {
         this.people = [];
     }
 
@@ -24,5 +25,9 @@ export class HomeComponent implements OnInit {
             "firstName": "Ilker",
             "lastName": "Yahov"
         });
+    }
+
+    public navigateDetailsPage(fullName: string) {
+        this.router.navigate(["details", fullName]);
     }
  }

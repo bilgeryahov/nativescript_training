@@ -4,6 +4,8 @@ import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
 import { HomeComponent } from "./components/home/home.component";
+import {DetailsComponent} from "./components/details/details.component";
+
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -21,7 +23,8 @@ import { HomeComponent } from "./components/home/home.component";
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        DetailsComponent
     ],
     providers: [ ],
     schemas: [
