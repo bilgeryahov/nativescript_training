@@ -1,9 +1,12 @@
 <ActionBar title="Home">
     <ActionItem text="Add" ios.position="right"></ActionItem>
 </ActionBar>
-<StackLayout class="form">
-    <StackLayout class="input-field">
-        <TextField class="input input-border">
-        </TextField>
-    </StackLayout>
-</StackLayout>
+<GridLayout>
+    <ListView [items]="people" class="list-group">
+        <ng-template let-person="item">
+            <StackLayout class="list-group-item">
+                <Label text="{{ person.firstName }} {{ person.lastName }}"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>
