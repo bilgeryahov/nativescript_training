@@ -1,0 +1,14 @@
+<ActionBar title="Create">
+    <NavigationButton text="Back"></NavigationButton>
+    <ActionItem text="Save" ios.position="right" (tap)="save()"></ActionItem>
+</ActionBar>
+<StackLayout class="form">
+    <StackLayout class="input-field">
+        <Label class="label" text="First Name"></Label>
+        <TextField class="input input-border" [(ngModel)]="firstName"></TextField>
+    </StackLayout>
+    <StackLayout class="input-field">
+            <Label class="label" text="Last Name"></Label>
+            <TextField class="input input-border"[(ngModel)]="lastName"></TextField>
+    </StackLayout>
+</StackLayout>

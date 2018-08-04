@@ -1,14 +1,12 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
-import { AppComponent } from "./app.component";
 
+import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
 import {DetailsComponent} from "./components/details/details.component";
-
-
-// Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { CreateComponent } from "./components/create/create.component";
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
@@ -19,12 +17,14 @@ import {DetailsComponent} from "./components/details/details.component";
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        DetailsComponent
+        DetailsComponent,
+        CreateComponent
     ],
     providers: [ ],
     schemas: [

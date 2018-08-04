@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import * as ApplicationSettings from "application-settings";
+import { Location } from "@angular/common";
 
 @Component({
     selector: "ns-home",
@@ -11,23 +13,27 @@ import { Router } from "@angular/router";
 export class HomeComponent implements OnInit {
 
     private people: Array<any>;
+    private storage: any;
 
-    public constructor(private router: Router) {
+    public constructor(private router: Router, private location: Location) {
         this.people = [];
+        this.storage = [];
     }
 
     public ngOnInit(): void {
-        this.people.push({
-            "firstName": "Bilger",
-            "lastName": "Yahov"
+        this.location.subscribe(() => {
+            this.storage = JSON.parse(ApplicationSettings.getString("data", "[]"));
+            this.people = this.storage;
         });
-        this.people.push({
-            "firstName": "Ilker",
-            "lastName": "Yahov"
-        });
+        this.storage = JSON.parse(ApplicationSettings.getString("data", "[]"));
+        this.people = this.storage;
     }
 
     public navigateDetailsPage(fullName: string) {
         this.router.navigate(["details", fullName]);
+    }
+
+    public navigateCreatePage() {
+        this.router.navigate(["create"]);
     }
  }
