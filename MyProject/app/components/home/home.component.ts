@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import * as ApplicationSettings from "application-settings";
+import { Couchbase } from "nativescript-couchbase";
 import { Location } from "@angular/common";
 
 @Component({
@@ -13,20 +13,29 @@ import { Location } from "@angular/common";
 export class HomeComponent implements OnInit {
 
     private people: Array<any>;
-    private storage: any;
+    private database: any;
 
     public constructor(private router: Router, private location: Location) {
         this.people = [];
-        this.storage = [];
+        this.database = new Couchbase("peopledatabase");
+        this.database.createView("people", "1", (document, emitter) => {
+            emitter.emit(document._id, document);
+        });
     }
 
     public ngOnInit(): void {
         this.location.subscribe(() => {
-            this.storage = JSON.parse(ApplicationSettings.getString("data", "[]"));
-            this.people = this.storage;
+           this.loadData();
         });
-        this.storage = JSON.parse(ApplicationSettings.getString("data", "[]"));
-        this.people = this.storage;
+        this.loadData();
+    }
+
+    private loadData () {
+        this.people = [];
+        let rows = this.database.executeQuery("people");
+        rows.forEach(element => {
+            this.people.push(element);
+        });
     }
 
     public navigateDetailsPage(fullName: string) {

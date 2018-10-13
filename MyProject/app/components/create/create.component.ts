@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import * as ApplicationSettings from "application-settings";
+import { Couchbase } from "nativescript-couchbase";
 import { Location } from "@angular/common";
 
 @Component({
@@ -13,25 +13,22 @@ export class CreateComponent implements OnInit {
 
     private firstName: string;
     private lastName: string;
-    private storage: any;
+    private database: any;
 
     public constructor(private location: Location) {
         this.firstName = "";
         this.lastName = "";
-        this.storage = [];
+        this.database = new Couchbase("peopledatabase");
     }
 
-    public ngOnInit(): void {
-        this.storage = JSON.parse(ApplicationSettings.getString("data", "[]"));
-    }
+    public ngOnInit(): void { }
 
     public save() {
         if(this.firstName && this.lastName) {
-            this.storage.push({
+            this.database.createDocument({
                 firstName: this.firstName,
                 lastName: this.lastName
             });
-            ApplicationSettings.setString("data", JSON.stringify(this.storage));
             this.location.back();
         }
     }
