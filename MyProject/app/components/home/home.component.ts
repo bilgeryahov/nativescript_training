@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Couchbase } from "nativescript-couchbase";
 import { Location } from "@angular/common";
+const jsSHA = require("jssha") ;
 
 @Component({
     selector: "ns-home",
@@ -30,12 +31,10 @@ export class HomeComponent implements OnInit {
         this.loadData();
     }
 
-    private loadData () {
-        this.people = [];
-        let rows = this.database.executeQuery("people");
-        rows.forEach(element => {
-            this.people.push(element);
-        });
+    public hashName (value: string): string {
+        let shaObj = new jsSHA("SHA-1", "TEXT");
+        shaObj.update(value);
+        return shaObj.getHash("HEX");
     }
 
     public navigateDetailsPage(fullName: string) {
@@ -44,5 +43,13 @@ export class HomeComponent implements OnInit {
 
     public navigateCreatePage() {
         this.router.navigate(["create"]);
+    }
+
+    private loadData () {
+        this.people = [];
+        let rows = this.database.executeQuery("people");
+        rows.forEach(element => {
+            this.people.push(element);
+        });
     }
  }

@@ -7,7 +7,8 @@
             <StackLayout class="list-group-item" 
                 (tap)="navigateDetailsPage(person.firstName + ' ' + person.lastName)"
             >
-                <Label text="{{ person.firstName }} {{ person.lastName }}"></Label>
+                <Label class="2" text="{{ person.firstName }} {{ person.lastName }}"></Label>
+                <Label text="{{ hashName(person.firstName + ' ' + person.lastName) }}"></Label>
             </StackLayout>
         </ng-template>
     </ListView>
