@@ -1,5 +1,5 @@
+import { Database } from "../../providers/database/database";
 import { Component, OnInit } from "@angular/core";
-import { Couchbase } from "nativescript-couchbase";
 import { Location } from "@angular/common";
 
 @Component({
@@ -13,19 +13,17 @@ export class CreateComponent implements OnInit {
 
     private firstName: string;
     private lastName: string;
-    private database: any;
 
-    public constructor(private location: Location) {
+    public constructor(private location: Location, private database: Database) {
         this.firstName = "";
         this.lastName = "";
-        this.database = new Couchbase("peopledatabase");
     }
 
     public ngOnInit(): void { }
 
     public save() {
         if(this.firstName && this.lastName) {
-            this.database.createDocument({
+            this.database.getStorage().createDocument({
                 firstName: this.firstName,
                 lastName: this.lastName
             });

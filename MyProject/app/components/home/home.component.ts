@@ -1,6 +1,6 @@
+import { Database } from "../../providers/database/database";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Couchbase } from "nativescript-couchbase";
 import { Location } from "@angular/common";
 import * as Platform from "platform";
 import * as Application from "application";
@@ -20,14 +20,9 @@ declare var NSBundle: any;
 export class HomeComponent implements OnInit {
 
     private people: Array<any>;
-    private database: any;
 
-    public constructor(private router: Router, private location: Location) {
+    public constructor(private router: Router, private location: Location, private database: Database) {
         this.people = [];
-        this.database = new Couchbase("peopledatabase");
-        this.database.createView("people", "1", (document, emitter) => {
-            emitter.emit(document._id, document);
-        });
     }
 
     public ngOnInit(): void {
@@ -65,7 +60,7 @@ export class HomeComponent implements OnInit {
 
     private loadData () {
         this.people = [];
-        let rows = this.database.executeQuery("people");
+        let rows = this.database.getStorage().executeQuery("people");
         rows.forEach(element => {
             this.people.push(element);
         });

@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
+import { Database } from "./providers/database/database";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -26,7 +27,9 @@ import { CreateComponent } from "./components/create/create.component";
         DetailsComponent,
         CreateComponent
     ],
-    providers: [ ],
+    providers: [ 
+        Database
+    ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
