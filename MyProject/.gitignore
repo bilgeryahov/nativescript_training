@@ -9,6 +9,9 @@ package-lock.json
 app/**/*.map
 app/**/*.js
 
+# Do not ignore the test files.
+!app/tests/**/*
+
 .DS_Store
 **/*.log
 tags
